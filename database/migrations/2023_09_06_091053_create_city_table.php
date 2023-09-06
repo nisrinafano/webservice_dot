@@ -14,8 +14,12 @@ class CreateCityTable extends Migration
     public function up()
     {
         Schema::create('city', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id('city_id');
+            $table->int('province_id');
+            $table->string('province');
+            $table->string('type');
+            $table->string('city_name');
+            $table->string('postal_code');
         });
     }
 
