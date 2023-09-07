@@ -47,4 +47,12 @@ class city_controller extends Controller
             $this->save($value);
         }
     }
+
+    public function swap_source(Request $request) {
+        $source = $request->get('source');
+
+        if ($source == 'database') $this->show($request);
+        else if ($source == 'api') $this->curl_city($request->get('id'));
+        else return api_formatter::create_api(400, 'Source not specified. Please use \'database\' or \'api\' as source value');
+    }
 }

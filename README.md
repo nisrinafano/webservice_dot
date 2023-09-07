@@ -19,10 +19,33 @@ This project is made by Nisrina Fadhilah Fano as a online test for the recruitme
 7. Now you're ready to test the REST API with Postman
 
 ## Steps to test Sprint 1
+0. Move to branch `sprint1`
 1. Check in the database, there should be 2 tables named province and city. Make sure the tables are empty.
 2. Run `php artisan fetch:province` to fetch province data from Rajaongkir
 3. Run `php artisan fetch:city` to fetch city data from Rajaongkir
-4. Test the REST API using Postman. Here is the example requests:
+4. Test the REST API using Postman. Here is the endpoints:
 
 - [GET] /api/search/provinces?id={id}
 - [GET] /api/search/cities?id={id}
+
+## Steps to test Sprint 2
+0. Move to branch `sprint2`
+1. Run `php artisan db:seed` to populate the database with dummy data
+2. Test the API using Postman without login first. Here is the details:
+    - Endpoint:
+        - [GET] /api/search/provinces?id={id}
+        - [GET] /api/search/cities?id={id}
+3. Login using this detail in Postman
+    - [POST] /api/login
+    - Use the following parameters
+        - email: `admin@noemail.com`
+        - password: `h3LL0WoRLd`
+    - Save the token given to test the API
+4. Test the API using Postman without login first. Here is the details:
+    - Endpoint:
+        - [GET] /api/search/provinces?id={id}&source={api/database}
+        - [GET] /api/search/cities?id={id}&source={api/database}
+    - Authorization:
+        - Choose `Bearer Token`. Insert the token given in the previous step
+    - The swapable source can be chosen from the endpoint in the `source` part
+5. To test using unit test, run `php artisan test`
